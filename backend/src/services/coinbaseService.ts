@@ -22,10 +22,13 @@ class CoinbaseService {
             });
             return response.data.data;
         } catch (error) {
-            throw new Error(`Error fetching market data: ${error.message}`);
+            if (error instanceof Error) {
+                throw new Error(`Error fetching market data: ${error.message}`);
+            }
+            throw new Error('Error fetching market data');
         }
     }
-
+    
     public async buyCurrency(amount: number, currency: string): Promise<any> {
         try {
             const response = await axios.post(`${this.apiUrl}/buys`, {
@@ -40,25 +43,10 @@ class CoinbaseService {
             });
             return response.data.data;
         } catch (error) {
-            throw new Error(`Error buying currency: ${error.message}`);
-        }
-    }
-
-    public async sellCurrency(amount: number, currency: string): Promise<any> {
-        try {
-            const response = await axios.post(`${this.apiUrl}/sells`, {
-                amount,
-                currency,
-            }, {
-                headers: {
-                    'CB-ACCESS-KEY': this.apiKey,
-                    'CB-ACCESS-SIGN': this.apiSecret,
-                    'CB-ACCESS-TIMESTAMP': Math.floor(Date.now() / 1000).toString(),
-                },
-            });
-            return response.data.data;
-        } catch (error) {
-            throw new Error(`Error selling currency: ${error.message}`);
+            if (error instanceof Error) {
+                throw new Error(`Error buying currency: ${error.message}`);
+            }
+            throw new Error('Error buying currency');
         }
     }
 }
