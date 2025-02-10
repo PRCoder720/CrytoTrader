@@ -9,6 +9,7 @@
 <body>
     <div class="container">
         <h1 class="mt-5">Crypto Trading Bot</h1>
+        <!-- Original coins -->
         <div class="row mt-4">
             <div class="col-md-6">
                 <h3>Bitcoin (BTC)</h3>
@@ -29,6 +30,58 @@
                 <p id="doge-price">Loading...</p>
             </div>
         </div>
+        
+        <!-- Additional 10 crypto coins -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Ripple (XRP)</h3>
+                <p id="xrp-price">Loading...</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Bitcoin Cash (BCH)</h3>
+                <p id="bch-price">Loading...</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Cardano (ADA)</h3>
+                <p id="ada-price">Loading...</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Polkadot (DOT)</h3>
+                <p id="dot-price">Loading...</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Binance Coin (BNB)</h3>
+                <p id="bnb-price">Loading...</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Stellar (XLM)</h3>
+                <p id="xlm-price">Loading...</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Chainlink (LINK)</h3>
+                <p id="link-price">Loading...</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Solana (SOL)</h3>
+                <p id="sol-price">Loading...</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>TRON (TRX)</h3>
+                <p id="trx-price">Loading...</p>
+            </div>
+            <div class="col-md-6">
+                <h3>VeChain (VET)</h3>
+                <p id="vet-price">Loading...</p>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -41,6 +94,7 @@
         }
 
         async function updatePrices() {
+            // Original prices
             const btcPrice = await fetchPrice('BTC');
             document.getElementById('btc-price').innerText = `Price: $${btcPrice}`;
 
@@ -52,6 +106,37 @@
 
             const dogePrice = await fetchPrice('DOGE');
             document.getElementById('doge-price').innerText = `Price: $${dogePrice}`;
+            
+            // Additional coins
+            const xrpPrice = await fetchPrice('XRP');
+            document.getElementById('xrp-price').innerText = `Price: $${xrpPrice}`;
+
+            const bchPrice = await fetchPrice('BCH');
+            document.getElementById('bch-price').innerText = `Price: $${bchPrice}`;
+
+            const adaPrice = await fetchPrice('ADA');
+            document.getElementById('ada-price').innerText = `Price: $${adaPrice}`;
+
+            const dotPrice = await fetchPrice('DOT');
+            document.getElementById('dot-price').innerText = `Price: $${dotPrice}`;
+
+            const bnbPrice = await fetchPrice('BNB');
+            document.getElementById('bnb-price').innerText = `Price: $${bnbPrice}`;
+
+            const xlmPrice = await fetchPrice('XLM');
+            document.getElementById('xlm-price').innerText = `Price: $${xlmPrice}`;
+
+            const linkPrice = await fetchPrice('LINK');
+            document.getElementById('link-price').innerText = `Price: $${linkPrice}`;
+
+            const solPrice = await fetchPrice('SOL');
+            document.getElementById('sol-price').innerText = `Price: $${solPrice}`;
+
+            const trxPrice = await fetchPrice('TRX');
+            document.getElementById('trx-price').innerText = `Price: $${trxPrice}`;
+
+            const vetPrice = await fetchPrice('VET');
+            document.getElementById('vet-price').innerText = `Price: $${vetPrice}`;
         }
 
         updatePrices();
