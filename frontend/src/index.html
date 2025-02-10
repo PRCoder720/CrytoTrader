@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading Bot</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Crypto Trading Bot</h1>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Bitcoin (BTC)</h3>
+                <p id="btc-price">Loading...</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Litecoin (LTC)</h3>
+                <p id="ltc-price">Loading...</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Ethereum (ETH)</h3>
+                <p id="eth-price">Loading...</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Dogecoin (DOGE)</h3>
+                <p id="doge-price">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        async function fetchPrice(currency) {
+            const response = await fetch(`/api/market-data/${currency}`);
+            const data = await response.json();
+            return data.amount;
+        }
+
+        async function updatePrices() {
+            const btcPrice = await fetchPrice('BTC');
+            document.getElementById('btc-price').innerText = `Price: $${btcPrice}`;
+
+            const ltcPrice = await fetchPrice('LTC');
+            document.getElementById('ltc-price').innerText = `Price: $${ltcPrice}`;
+
+            const ethPrice = await fetchPrice('ETH');
+            document.getElementById('eth-price').innerText = `Price: $${ethPrice}`;
+
+            const dogePrice = await fetchPrice('DOGE');
+            document.getElementById('doge-price').innerText = `Price: $${dogePrice}`;
+        }
+
+        updatePrices();
+        setInterval(updatePrices, 60000); // Update prices every minute
+    </script>
+</body>
+</html>
